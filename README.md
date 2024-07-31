@@ -24,38 +24,38 @@ Template for web-publish ready html doc, with webpack install needed only
     from :
     https://webpack.js.org/guides/output-management/#setting-up-htmlwebpackplugin
 
-        	const HtmlWebpackPlugin = require("html-webpack-plugin");
-        	const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
-        	module.exports = {
-        		entry: "./src/index.js",
-        		plugins: [
-            		new HtmlWebpackPlugin({
-            		scriptLoading: "blocking", //adds script to end of body
-        		template: "./src/index.html  //makes src>index.html the
-        						editable template, and then
-        						packs all the info into
-        						dist>index.html for production
-            		}),
-        		],
-        		output: {
-            		filename: "main.js",
-            		path: path.resolve(__dirname, "dist"),
-            		clean: true,
+module.exports = {
+    entry: "./src/index.js",
+    plugins: [
+        new HtmlWebpackPlugin({
+        scriptLoading: "blocking", //adds script to end of body
+    template: "./src/index.html  //makes src>index.html the
+                    editable template, and then
+                    packs all the info into
+                    dist>index.html for production
+        }),
+    ],
+    output: {
+        filename: "main.js",
+        path: path.resolve(__dirname, "dist"),
+        clean: true,
 
+        },
+    module: {
+        rules: [
+                {
+                    test: /\.css$/i,
+                    use:[
+                            "style-loader",
+                            "css-loader"
+                        ],
                     },
-                module: {
-                    rules: [
-                            {
-                                test: /\.css$/i,
-                                use:[
-                                        "style-loader",
-                                        "css-loader"
-                                    ],
-                                },
-                            ],
-                        },
-                    };
+                ],
+            },
+        };
 
 10. To setup webpack to manage HTML: npm install --save-dev html-webpack-plugin
 11. In package.json add a comma at the end of 
