@@ -24,44 +24,44 @@ Template for web-publish ready html doc, with webpack install needed only
     from :
     https://webpack.js.org/guides/output-management/#setting-up-htmlwebpackplugin
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
-
-module.exports = {
-    entry: "./src/index.js",
-    plugins: [
-        new HtmlWebpackPlugin({
-        scriptLoading: "blocking", //adds script to end of body
-    template: "./src/index.html  //makes src>index.html the
-                    editable template, and then
-                    packs all the info into
-                    dist>index.html for production
-        }),
-    ],
-    output: {
-        filename: "main.js",
-        path: path.resolve(__dirname, "dist"),
-        clean: true,
-
-        },
-    module: {
-        rules: [
-                {
-                    test: /\.css$/i,
-                    use:[
-                            "style-loader",
-                            "css-loader"
-                        ],
-                    },
+            const HtmlWebpackPlugin = require("html-webpack-plugin");
+            const path = require("path");
+            
+            module.exports = {
+                entry: "./src/index.js",
+                plugins: [
+                    new HtmlWebpackPlugin({
+                    scriptLoading: "blocking", //adds script to end of body
+                template: "./src/index.html  //makes src>index.html the
+                                editable template, and then
+                                packs all the info into
+                                dist>index.html for production
+                    }),
                 ],
-            },
-        };
+                output: {
+                    filename: "main.js",
+                    path: path.resolve(__dirname, "dist"),
+                    clean: true,
+            
+                    },
+                module: {
+                    rules: [
+                            {
+                                test: /\.css$/i,
+                                use:[
+                                        "style-loader",
+                                        "css-loader"
+                                    ],
+                                },
+                            ],
+                        },
+                    };
 
 10. To setup webpack to manage HTML: npm install --save-dev html-webpack-plugin
 11. In package.json add a comma at the end of 
     ```
-"scripts: { "test":... , "build":
-    webpack", ...}
+            "scripts: { "test":... , "build":
+                webpack", ...}
     ```
 13. In the src folder create a style.css file
 14. Make sure the necessary rules are in webpack.config.js for css
@@ -80,29 +80,39 @@ module.exports = {
 
 19. To publish the files through GitHub:
 
-    1.  ```git add dist && git commit -m "Initial dist subtree commit"```
-    2.  ```git subtree push --prefix dist origin gh-pages```
+    1.
 
-    3.  If you already have a "gh-pages" branch, use the 1st command below.
+       ```
+          git add dist && git commit -m "Initial dist subtree commit"
+       ```
+       
+    3.  
+
+        git subtree push --prefix dist origin gh-pages
+
+        
+
+    4.  If you already have a "gh-pages" branch, use the 1st command below.
 
         - If you don't have a "gh-pages" branch, initialize it by using the 2nd
           command below.
         - Make it easier to run by creating scripts like these in your
           package.json file:
 ```
-"scripts": {
-              "gh-deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
-              "gh-deploy-init": "git push origin && git subtree push --prefix dist origin gh-pages",
-          }
+
+        "scripts": {
+                      "gh-deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
+                      "gh-deploy-init": "git push origin && git subtree push --prefix dist origin gh-pages",
+                  }
 ```
 
-        -In terminal:
+        In terminal:
 ```
     npm run gh-deploy
     npm run gh-deploy-init
 ```
 
-    4.  In your repository in GitHub. Go to Settings. Go to Pages.
+    5.  In your repository in GitHub. Go to Settings. Go to Pages.
         - Under the Source section you will see a dropdown list of branches.
         - Select the "gh-pages" branch and select the root as your folder.
         - Then click Save.
