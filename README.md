@@ -58,27 +58,30 @@ Template for web-publish ready html doc, with webpack install needed only
                     };
 
 10. To setup webpack to manage HTML: npm install --save-dev html-webpack-plugin
-11. In package.json add a comma at the end of "scripts: { "test":... , "build":
+11. In package.json add a comma at the end of 
+    ```
+"scripts: { "test":... , "build":
     webpack", ...}
-12. In the src folder create a style.css file
-13. Make sure the necessary rules are in webpack.config.js for css
+    ```
+13. In the src folder create a style.css file
+14. Make sure the necessary rules are in webpack.config.js for css
     1. Install the files needed to run CSS & Styles: npm install --save-dev
        css-loader style-leader
-14. Import the css file into the index.js file using : import "./style.css" at
+15. Import the css file into the index.js file using : import "./style.css" at
     the top of the file
-15. To complete basic Build, npx webpack OR npm run build
-16. for adding images, fonts, json, data. See:
+16. To complete basic Build, npx webpack OR npm run build
+17. for adding images, fonts, json, data. See:
     https://webpack.js.org/guides/asset-management/
 
-17. To test if working, add boilerplate to src> index.html and a console.log
+18. To test if working, add boilerplate to src> index.html and a console.log
     statement to index.js For css testing, add a div componenet nad change its
     color to something using js then save each individual file and run npm run
     build
 
-18. To publish the files through GitHub:
+19. To publish the files through GitHub:
 
-    1.  git add dist && git commit -m "Initial dist subtree commit"
-    2.  git subtree push --prefix dist origin gh-pages
+    1.  ```git add dist && git commit -m "Initial dist subtree commit"```
+    2.  ```git subtree push --prefix dist origin gh-pages```
 
     3.  If you already have a "gh-pages" branch, use the 1st command below.
 
@@ -87,16 +90,17 @@ Template for web-publish ready html doc, with webpack install needed only
         - Make it easier to run by creating scripts like these in your
           package.json file:
 ```
-            "scripts": {
-                          "gh-deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
-                          "gh-deploy-init": "git push origin && git subtree push --prefix dist origin gh-pages",
-                      }
+"scripts": {
+              "gh-deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
+              "gh-deploy-init": "git push origin && git subtree push --prefix dist origin gh-pages",
+          }
 ```
 
         -In terminal:
-
-            npm run gh-deploy
-            npm run gh-deploy-init
+```
+    npm run gh-deploy
+    npm run gh-deploy-init
+```
 
     4.  In your repository in GitHub. Go to Settings. Go to Pages.
         - Under the Source section you will see a dropdown list of branches.
